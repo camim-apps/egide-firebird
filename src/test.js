@@ -1,26 +1,13 @@
 const { Product } = require('./models')
+const products = require('../db/db.json')
+const { chunk } = require('lodash')
 
 const test = async () => {
     try {
-        const items = [
-            {
-                id: 0,
-                barcode: '7791293040394',
-                name: 'TC REXONA PES ANTBAC SPORT 100GR',
-                price: 999,
-                inventory: -3406,
-                category: 'PERFUMARIA',
-                subcategory: 'PERFUMARIA',
-                supplier: 'UNILEVER',
-                action: 'insert',
-            },
-            {
-                id: 11,
-                name: 'Item 2',
-            },
-        ]
-        const product = await Product.bulkCreate(items)
-        console.log(product)
+        for (const block of chunk(products, 500)) {
+            console.log(block.length)
+            await Product.bulkCreate(block)
+        }
     } catch (error) {
         console.log(error)
     } finally {

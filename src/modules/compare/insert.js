@@ -20,10 +20,7 @@ const insert = async (values) => {
         action: Action.Insert,
     }))
 
-    const file = __dirname + '/../../db/data.json'
-    fs.writeFileSync(file, JSON.stringify(items, null, 2), { encoding: 'utf8' })
-
-    for (const block in chunk(items, 500)) {
+    for (const block of chunk(items, 500)) {
         await Product.bulkCreate(block)
     }
 }

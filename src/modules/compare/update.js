@@ -28,7 +28,7 @@ const update = async (values) => {
         action: Action.Update,
     }))
 
-    for (const block in chunk(items, 500)) {
+    for (const block of chunk(items, 500)) {
         await Product.delete({
             where: {
                 id: {
