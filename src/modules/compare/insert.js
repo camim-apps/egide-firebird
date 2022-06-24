@@ -9,7 +9,7 @@ const insert = async (values) => {
 
     const items = values.map((item) => ({
         id: item.ID,
-        barcode: item.id,
+        barcode: item.BARCODE,
         name: item.NAME,
         price: item.PRICE,
         inventory: item.INVENTORY,

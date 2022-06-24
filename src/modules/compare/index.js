@@ -20,13 +20,13 @@ const compare = async (items) => {
         const products = await Product.findAll({
             where: {
                 id: {
-                    [Op.in]: block.map(item => item.id)
+                    [Op.in]: block.map(item => item.ID)
                 }
             }
         })
 
         for (const item of block) {
-            const product = products.find(p => p.ID === item.id)
+            const product = products.find(p => p.ID === item.ID)
             if (product) {
                 foundProducts.push({
                     product,

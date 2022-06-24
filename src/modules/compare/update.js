@@ -18,7 +18,7 @@ const update = async (values) => {
 
     const items = elements.map((item) => ({
         id: item.ID,
-        barcode: item.id,
+        barcode: item.BARCODE,
         name: item.NAME,
         price: item.PRICE,
         inventory: item.INVENTORY,
