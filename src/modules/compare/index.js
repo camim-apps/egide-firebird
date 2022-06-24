@@ -9,8 +9,6 @@ const compare = async (items) => {
         return
     }
 
-    console.log('>>> Quantidade de produtos', items.length)
-
     const foundProducts = []
     const newProduts = []
 

@@ -5,7 +5,6 @@ const { chunk } = require('lodash')
 const test = async () => {
     try {
         for (const block of chunk(products, 500)) {
-            console.log(block.length)
             await Product.bulkCreate(block)
         }
     } catch (error) {

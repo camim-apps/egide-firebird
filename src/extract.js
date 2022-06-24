@@ -3,7 +3,6 @@ const compare = require('./modules/compare')
 
 const sql = `
     SELECT
-        first 1000
           p.ID_PRODUTO AS ID
         , p.CODIGO_BARRAS_1 AS BARCODE
         , p.DESCRICAO AS NAME
