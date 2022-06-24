@@ -16,9 +16,14 @@ $ npm i -g pm2
 
 # Instalar o app de transferência
 
-git clone git@github.com:camim-apps/egide-firebird.git .
+$ git clone https://github.com/camim-apps/egide-firebird.git
+$ cd egide-firebird
+$ npm install
 
 # Criar o arquivo de configuração
 
 > Replicar o arquivo .env.example para .env que está dentro da pasta egide-firebird e atualizar
 
+# Testar
+
+# Rodar o app

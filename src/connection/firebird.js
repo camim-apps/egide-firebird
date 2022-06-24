@@ -15,12 +15,25 @@ const options = {
     retryConnectionInterval: 1000, // reconnect interval in case of connection drop
 }
 
-const query = async (sql) => {
-    const connection = await Firebird.attach(options)
-    const result = await connection.query(sql)
-    connection.detach()
-    return result
-}
+const query = (sql) =>
+    new Promise((resolve, reject) => {
+        Firebird.attach(options, function (err, db) {
+            if (err) {
+                reject(err)
+                return
+            }
+
+            // db = DATABASE
+            db.query(sql, (err, result) => {
+                db.detach()
+                if (err) {
+                    reject(err)
+                    return
+                }
+                resolve(result)
+            })
+        })
+    })
 
 module.exports = {
     query,
