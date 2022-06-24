@@ -1,0 +1,13 @@
+{
+  "name": "firebird",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "NODE_ENV=production node ./src/cron.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "node-firebird": "^1.0.0"
+  }
+}
