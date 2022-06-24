@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             barcode: DataTypes.STRING,
             name: DataTypes.STRING,
-            price: DataTypes.INT,
+            price: DataTypes.INTEGER,
             inventory: DataTypes.DOUBLE,
             category: DataTypes.STRING,
             subcategory: DataTypes.STRING,
