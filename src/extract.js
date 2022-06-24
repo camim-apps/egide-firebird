@@ -1,5 +1,6 @@
 const { query } = require('./connection/firebird')
 const compare = require('./modules/compare')
+const upload = require('./modules/upload')
 
 const sql = `
     SELECT
@@ -21,7 +22,11 @@ const sql = `
 const extract = async () => {
     try {
         const results = await query(sql)
-        await compare(results)
+        const qtde = await compare(results)
+        if (!qtde) {
+            return
+        }
+        await upload()
     } catch (error) {
         console.log(error)
     } finally {

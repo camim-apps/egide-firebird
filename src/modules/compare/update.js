@@ -1,19 +1,18 @@
 const { Op } = require('sequelize') 
 const { chunk } = require('lodash')
-const Action = require('../../config/Action')
 const { Product } = require('../../models')
 
-const update = async (values) => {
-    const elements = values
+const update = async ({ products, updateTime }) => {
+    const elements = products
         .filter(
             ({ product, item }) =>
                 product.price !== item.PRICE ||
-                item.inventory !== item.INVENTORY
+                product.inventory !== item.INVENTORY
         )
         .map((element) => element.item)
 
     if (!elements.length) {
-        return
+        return 0
     }
 
     const items = elements.map((item) => ({
@@ -25,11 +24,11 @@ const update = async (values) => {
         category: item.CATEGORY,
         subcategory: item.SUBCATEGORY,
         supplier: item.SUPPLIER,
-        action: Action.Update,
+        updateTime
     }))
 
     for (const block of chunk(items, 500)) {
-        await Product.delete({
+        await Product.destroy({
             where: {
                 id: {
                     [Op.in]: block.map((x) => x.id),
@@ -38,6 +37,10 @@ const update = async (values) => {
         })
         await Product.bulkCreate(block)
     }
+
+    console.log('>>> Produtos atualizados', items.length)
+
+    return items.length
 }
 
 module.exports = update

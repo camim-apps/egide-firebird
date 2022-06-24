@@ -6,7 +6,7 @@ const update = require('./update')
 
 const compare = async (items) => {
     if (!items.length) {
-        return
+        return 0
     }
 
     const foundProducts = []
@@ -18,17 +18,17 @@ const compare = async (items) => {
         const products = await Product.findAll({
             where: {
                 id: {
-                    [Op.in]: block.map(item => item.ID)
-                }
-            }
+                    [Op.in]: block.map((item) => item.ID),
+                },
+            },
         })
 
         for (const item of block) {
-            const product = products.find(p => p.ID === item.ID)
+            const product = products.find((p) => p.id === item.ID)
             if (product) {
                 foundProducts.push({
                     product,
-                    item
+                    item,
                 })
             } else {
                 newProduts.push(item)
@@ -36,8 +36,10 @@ const compare = async (items) => {
         }
     }
 
-    await insert(newProduts)
-    await update(foundProducts)
+    const updateTime = new Date().getTime()
+    const inserted = await insert({ products: newProduts, updateTime })
+    const updated = await update({ products: foundProducts, updateTime })
+    return inserted + updated
 }
 
 module.exports = compare

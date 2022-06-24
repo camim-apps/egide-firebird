@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             category: DataTypes.STRING,
             subcategory: DataTypes.STRING,
             supplier: DataTypes.STRING,
-            action: DataTypes.STRING,
+            updateTime: DataTypes.INTEGER,
         },
         {
             sequelize,

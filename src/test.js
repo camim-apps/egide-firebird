@@ -1,12 +1,14 @@
-const { Product } = require('./models')
+require('dotenv').config()
 const products = require('../db/db.json')
-const { chunk } = require('lodash')
+// const { mapKeys } = require('lodash')
+// const compare = require('./modules/compare')
+const upload = require('./modules/upload')
 
 const test = async () => {
     try {
-        for (const block of chunk(products, 500)) {
-            await Product.bulkCreate(block)
-        }
+        // const items = products.map(item => mapKeys(item, (_, key) => key.toUpperCase()))
+        // await compare(items)
+        console.log(await upload())
     } catch (error) {
         console.log(error)
     } finally {

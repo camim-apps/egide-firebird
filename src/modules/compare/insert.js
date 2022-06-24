@@ -1,14 +1,12 @@
 const { chunk } = require('lodash')
-const Action = require('../../config/Action')
 const { Product } = require('../../models')
-const fs = require('fs')
 
-const insert = async (values) => {
-    if (!values.length) {
-        return
+const insert = async ({ products, updateTime }) => {
+    if (!products.length) {
+        return 0
     }
 
-    const items = values.map((item) => ({
+    const items = products.map((item) => ({
         id: item.ID,
         barcode: item.BARCODE,
         name: item.NAME,
@@ -17,12 +15,16 @@ const insert = async (values) => {
         category: item.CATEGORY,
         subcategory: item.SUBCATEGORY,
         supplier: item.SUPPLIER,
-        action: Action.Insert,
+        updateTime,
     }))
 
     for (const block of chunk(items, 500)) {
         await Product.bulkCreate(block)
     }
+
+    console.log('>>> Produtos inseridos', items.length)
+
+    return items.length
 }
 
 module.exports = insert

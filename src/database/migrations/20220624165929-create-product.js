@@ -15,7 +15,7 @@ module.exports = {
             category: Sequelize.STRING,
             subcategory: Sequelize.STRING,
             supplier: Sequelize.STRING,
-            action: Sequelize.STRING,
+            updateTime: Sequelize.INTEGER,
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,
