@@ -1,6 +1,7 @@
 const { chunk } = require('lodash')
 const Action = require('../../config/Action')
 const { Product } = require('../../models')
+const fs = require('fs')
 
 const insert = async (values) => {
     if (!values.length) {
@@ -19,9 +20,8 @@ const insert = async (values) => {
         action: Action.Insert,
     }))
 
-    console.log(JSON.stringify(values[0], null, 2))
-    console.log('>>>>>>>>>')
-    console.log(JSON.stringify(items[0], null, 2))
+    const file = __dirname + '/db/data.json'
+    fs.writeFileSync(file, JSON.stringify(item, null, 2), { encoding: 'utf8' })
 
     for (const block in chunk(items, 500)) {
         await Product.bulkCreate(block)
