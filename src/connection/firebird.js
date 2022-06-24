@@ -30,6 +30,16 @@ const query = (sql) =>
                     reject(err)
                     return
                 }
+
+                // Convert result buffer to string
+                for (const row of result) {
+                    for (const key in row) {
+                        if (Buffer.isBuffer(row[key])) {
+                            row[key] = row[key].toString('binary')
+                        }
+                    }
+                }
+
                 resolve(result)
             })
         })

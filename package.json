@@ -5,10 +5,20 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./src/cron.js",
-    "test": "node ./src/cron.js"
+    "test": "node ./src/test.js",
+    "db:migrate": "sequelize db:migrate",
+    "db:migrate:undo": "sequelize db:migrate:undo"
   },
   "dependencies": {
+    "axios": "^0.27.2",
     "dotenv": "^16.0.1",
-    "node-firebird": "^1.0.0"
+    "lodash": "^4.17.21",
+    "node-firebird": "^1.0.0",
+    "sequelize": "^6.21.0",
+    "sqlite3": "^5.0.8"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18",
+    "sequelize-cli": "^6.4.1"
   }
 }
