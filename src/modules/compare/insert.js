@@ -19,6 +19,8 @@ const insert = async (values) => {
         action: Action.Insert,
     }))
 
+    console.log(JSON.stringify(items[0], null, 2))
+
     for (const block in chunk(items, 500)) {
         await Product.bulkCreate(block)
     }
