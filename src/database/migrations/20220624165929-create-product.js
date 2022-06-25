@@ -16,6 +16,7 @@ module.exports = {
             subcategory: Sequelize.STRING,
             supplier: Sequelize.STRING,
             updateTime: Sequelize.INTEGER,
+            status: Sequelize.STRING,
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE,

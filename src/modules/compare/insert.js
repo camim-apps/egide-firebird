@@ -16,6 +16,7 @@ const insert = async ({ products, updateTime }) => {
         subcategory: item.SUBCATEGORY,
         supplier: item.SUPPLIER,
         updateTime,
+        status: 'created'
     }))
 
     for (const block of chunk(items, 500)) {

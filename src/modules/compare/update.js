@@ -24,7 +24,8 @@ const update = async ({ products, updateTime }) => {
         category: item.CATEGORY,
         subcategory: item.SUBCATEGORY,
         supplier: item.SUPPLIER,
-        updateTime
+        updateTime,
+        status: 'updated'
     }))
 
     for (const block of chunk(items, 500)) {

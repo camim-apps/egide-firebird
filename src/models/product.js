@@ -1,16 +1,13 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-    class Product extends Model {
-        static associate(models) {
-            // define association here
-        }
-    }
+    class Product extends Model {}
+
     Product.init(
         {
             id: {
                 primaryKey: true,
-                type: DataTypes.INTEGER
+                type: DataTypes.INTEGER,
             },
             barcode: DataTypes.STRING,
             name: DataTypes.STRING,
@@ -20,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
             subcategory: DataTypes.STRING,
             supplier: DataTypes.STRING,
             updateTime: DataTypes.INTEGER,
+            status: DataTypes.STRING,
         },
         {
             sequelize,
