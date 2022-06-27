@@ -21,7 +21,8 @@
             "cwd": "${workspaceRoot}",
             "runtimeExecutable": "yarn",
             "runtimeArgs": [
-                "test"
+                "test",
+                "${file}"
             ]
         },
     ]

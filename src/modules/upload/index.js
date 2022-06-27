@@ -4,11 +4,16 @@ const fs = require('fs')
 const FormData = require('form-data')
 const Axios = require('axios')
 const { Product } = require('../../models')
+const RemoteDatabase = require('../../models/remote')
 
 const { INTEGRATION_URL, INTEGRATION_USERNAME, INTEGRATION_PASSWORD } =
     process.env
 
 const upload = async () => {
+    if (!INTEGRATION_URL) {
+        return
+    }
+    
     const product = await Product.findOne({
         where: {
             status: {
@@ -21,8 +26,27 @@ const upload = async () => {
         return
     }
 
-    const file = resolve(__dirname, '..', '..', '..', 'db', 'db.sqlite')
+    const path = resolve(__dirname, '..', '..', '..', 'db')
 
+    const file = resolve(path, 'db.sqlite')
+
+    // Duplicate file - Delete old file
+    const fileRemote = resolve(path, 'db_remote.sqlite')
+    if (fs.existsSync(fileRemote)) {
+        fs.unlinkSync(fileRemote)
+    }
+
+    fs.copyFileSync(file, fileRemote)
+
+    // Remove all to not sync
+    const remote = new RemoteDatabase()
+    const { Product: ProductRemote } = remote.db
+
+    await ProductRemote.destroy({ where: { status: 'idle' } })
+    await remote.shrink()
+    await remote.close()
+
+    // Post to server
     const axios = Axios.create({
         baseURL: INTEGRATION_URL,
         headers: {
@@ -36,10 +60,11 @@ const upload = async () => {
     })
 
     const form = new FormData()
-    form.append('file', fs.createReadStream(file))
+    form.append('file', fs.createReadStream(fileRemote))
 
-    const response = await axios.post(`upload`, form)
+    const response = await axios.post('robot/upload', form)
 
+    // Update all products
     await Product.update(
         { status: 'idle' },
         {
