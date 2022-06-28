@@ -1,6 +1,12 @@
+const dotenv = require('dotenv')
+const { resolve } = require('path')
 const Firebird = require('node-firebird')
 
-const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = process.env
+const env = dotenv.config({
+    path: resolve(__dirname, '.env'),
+})?.parsed
+
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = env || {}
 
 const options = {
     host: DB_HOST,
