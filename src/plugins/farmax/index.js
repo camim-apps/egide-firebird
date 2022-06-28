@@ -17,6 +17,8 @@ class FarmaxPlugin extends BasePlugin {
         JOIN CLASSES c ON c.CD_CLASSE = p.CD_CLASSE
         JOIN GRUPOS g ON g.CD_GRUPO = p.CD_GRUPO
         JOIN LABORATORIOS l ON l.CD_LABORATORIO = p.CD_LABORATORIO
+        where
+            char_length(p.CODIGO_BARRAS_1) > 10
         order by p.ID_PRODUTO
     `
 
