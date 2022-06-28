@@ -13,7 +13,7 @@ const upload = async () => {
     if (!INTEGRATION_URL) {
         return
     }
-    
+
     const product = await Product.findOne({
         where: {
             status: {
@@ -75,6 +75,8 @@ const upload = async () => {
             },
         }
     )
+
+    fs.unlinkSync(fileRemote)
 
     return response.data
 }
