@@ -9,7 +9,7 @@ class FarmaxPlugin extends BasePlugin {
               p.ID_PRODUTO AS ID
             , p.CODIGO_BARRAS_1 AS BARCODE
             , p.DESCRICAO AS NAME
-            , p.PRECO_VENDA_1 * 100 AS PRICE
+            , cast(p.PRECO_VENDA_1 * 100 as int) AS PRICE
             , p.ESTOQUE_1 AS INVENTORY
             , l.NOME AS SUPPLIER
         FROM PRODUTOS p
