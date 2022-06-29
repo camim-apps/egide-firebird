@@ -4,7 +4,7 @@ const { Product } = require('../../models')
 const insert = require('./insert')
 const update = require('./update')
 
-const compare = async (items) => {
+const compare = async (items, mustStopOnUpdate = false) => {
     if (!items.length) {
         return 0
     }
@@ -37,7 +37,7 @@ const compare = async (items) => {
     }
 
     const inserted = await insert({ products: newProduts })
-    const updated = await update({ products: foundProducts })
+    const updated = await update({ products: foundProducts, mustStopOnUpdate })
 
     return inserted + updated
 }

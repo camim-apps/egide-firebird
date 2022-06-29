@@ -3,7 +3,7 @@ const extract = require('../modules/extract')
 
 const test = async () => {
     try {
-        await extract()
+        await extract(true)
     } catch (error) {
         console.log(error)
     } finally {

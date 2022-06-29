@@ -5,6 +5,8 @@ const compare = require('../modules/compare')
 
 class BasePlugin {
 
+    mustStopOnUpdate = false
+
     getRecords() {
         throw new Error('getSql() method must be implemented')
     }
@@ -15,7 +17,7 @@ class BasePlugin {
         if (!items.length) {
             return
         }
-        return compare(items)
+        return compare(items, this.mustStopOnUpdate)
     }
 
     getUniqueItems(items) {
