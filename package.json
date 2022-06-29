@@ -10,6 +10,7 @@
     "test": "node",
     "destroy": "node ./src/destroyAll.js",
     "db:migrate": "sequelize db:migrate",
+    "startover": "rm ./db/db.sqlite && sequelize db:migrate",
     "db:migrate:undo": "sequelize db:migrate:undo"
   },
   "dependencies": {
