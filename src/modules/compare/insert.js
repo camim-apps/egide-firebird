@@ -1,21 +1,13 @@
 const { chunk } = require('lodash')
 const { Product } = require('../../models')
 
-const insert = async ({ products, updateTime }) => {
+const insert = async ({ products }) => {
     if (!products.length) {
         return 0
     }
 
-    const items = products.map((item) => ({
-        id: item.ID,
-        barcode: item.BARCODE,
-        name: item.NAME,
-        price: item.PRICE,
-        inventory: item.INVENTORY,
-        category: item.CATEGORY,
-        subcategory: item.SUBCATEGORY,
-        supplier: item.SUPPLIER,
-        updateTime,
+    const items = products.map(product => ({
+        ...product,
         status: 'created'
     }))
 

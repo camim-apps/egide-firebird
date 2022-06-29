@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon ./src/index.js",
     "cron": "node ./src/cron.js",
-    "install": "pm2 start --name egide_integration ./src/cron.js",
+    "start": "pm2 start --name egide_integration ./src/cron.js",
     "test": "node",
     "destroy": "node ./src/destroyAll.js",
     "db:migrate": "sequelize db:migrate",

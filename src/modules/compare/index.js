@@ -18,13 +18,13 @@ const compare = async (items) => {
         const products = await Product.findAll({
             where: {
                 id: {
-                    [Op.in]: block.map((item) => item.ID),
+                    [Op.in]: block.map((item) => item.id),
                 },
             },
         })
 
         for (const item of block) {
-            const product = products.find((p) => p.id === item.ID)
+            const product = products.find((p) => p.id === item.id)
             if (product) {
                 foundProducts.push({
                     product,
@@ -36,9 +36,9 @@ const compare = async (items) => {
         }
     }
 
-    const updateTime = new Date().getTime()
-    const inserted = await insert({ products: newProduts, updateTime })
-    const updated = await update({ products: foundProducts, updateTime })
+    const inserted = await insert({ products: newProduts })
+    const updated = await update({ products: foundProducts })
+
     return inserted + updated
 }
 

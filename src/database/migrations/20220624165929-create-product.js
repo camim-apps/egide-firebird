@@ -12,8 +12,6 @@ module.exports = {
             price: Sequelize.INT,
             inventory: Sequelize.DOUBLE,
             price: Sequelize.INTEGER,
-            category: Sequelize.STRING,
-            subcategory: Sequelize.STRING,
             supplier: Sequelize.STRING,
             updateTime: Sequelize.INTEGER,
             status: Sequelize.STRING,

@@ -1,13 +1,12 @@
-const { Op } = require('sequelize') 
+const { Op } = require('sequelize')
 const { chunk } = require('lodash')
 const { Product } = require('../../models')
+const { isSameProduct } = require('../../shared/formatProducts')
 
-const update = async ({ products, updateTime }) => {
+const update = async ({ products }) => {
     const elements = products
         .filter(
-            ({ product, item }) =>
-                product.price !== item.PRICE ||
-                product.inventory !== item.INVENTORY
+            element => !isSameProduct(element)
         )
         .map((element) => element.item)
 
@@ -15,16 +14,8 @@ const update = async ({ products, updateTime }) => {
         return 0
     }
 
-    const items = elements.map((item) => ({
-        id: item.ID,
-        barcode: item.BARCODE,
-        name: item.NAME,
-        price: item.PRICE,
-        inventory: item.INVENTORY,
-        category: item.CATEGORY,
-        subcategory: item.SUBCATEGORY,
-        supplier: item.SUPPLIER,
-        updateTime,
+    const items = elements.map(element => ({
+        ...element,
         status: 'updated'
     }))
 
