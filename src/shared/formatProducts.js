@@ -17,7 +17,7 @@ const formatProduct = ({ status, updateTime, pairs, item }) => {
     })
 }
 
-const formatProducts = ({ pairs, items, status, updateTime }) => products.map(item => formatProduct({ item, status, pairs, item }))
+const formatProducts = ({ pairs, items, status, updateTime }) => items.map(item => formatProduct({ item, status, pairs, item }))
 
 const isSameProduct = ({ product, item }) => {
     return item.price === product.price && item.inventory === product.inventory
