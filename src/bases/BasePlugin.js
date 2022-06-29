@@ -35,11 +35,13 @@ class BasePlugin {
             [field]: recordFields.find(item => item.toLowerCase() === field)
         }), {})
 
+        const updateTime = new Date().getTime()
+
         const products = formatProducts({
             pairs,
             items,
             status: 'idle',
-            updateTime: new Date().getTime()
+            updateTime
         })
 
         return this.uniqueProducts(products)
