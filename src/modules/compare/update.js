@@ -8,7 +8,6 @@ const update = async ({ products, mustStopOnUpdate = false }) => {
         .filter(
             element => !isSameProduct(element)
         )
-        .map((element) => element.item)
 
     if (!elements.length) {
         return 0
@@ -19,7 +18,9 @@ const update = async ({ products, mustStopOnUpdate = false }) => {
         process.exit(0)
     }
 
-    const items = elements.map(element => ({
+    const values = elements.map((element) => element.item)
+
+    const items = values.map(element => ({
         ...element,
         status: 'updated'
     }))
