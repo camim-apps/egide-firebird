@@ -11,7 +11,7 @@ const formatProduct = ({ status, updateTime, pairs, item }) => {
             ...acc,
             [field]: value,
         }
-    }), {
+    }, {
         status,
         updateTime
     })
