@@ -4,7 +4,7 @@ const Firebird = require('node-firebird')
 
 const env = dotenv.config({
     path: resolve(__dirname, '.env'),
-})?.parsed
+}).parsed
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE } = env || {}
 

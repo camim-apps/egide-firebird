@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000
 
 const middleware = (req, res, next) => {
     try {
-        const [, basicToken] = (req.headers?.authorization ?? '').split(' ')
+        const [, basicToken] = ((req.headers && req.headers.authorization) || '').split(' ')
         if (!basicToken) {
             throw new Error('Missing token')
         }
