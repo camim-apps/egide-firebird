@@ -78,6 +78,8 @@ const upload = async () => {
 
     fs.unlinkSync(fileRemote)
 
+    console.log('>>> Upload realizado', new Date().toISOString())
+
     return response.data
 }
 
