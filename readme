@@ -1,14 +1,8 @@
 # Install Chocolately (como administrador)
 
 $ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-$ choco install -y nvm
-
-# Instalar NodeJS 16.15.1 (regular powershell)
-
-$ nvm install 16.15.1
-$ nvm use 16.15.1
-$ node -v
-$ npm -v
+$ choco install -y nodejs --version=16.4.0
+$ choco install -y git.install
 
 # Instalar o PM2
 
@@ -16,7 +10,7 @@ $ npm i -g pm2
 
 # Instalar o app de transferência
 
-$ git clone https://github.com/camim-apps/egide-firebird.git
+$ git clone https://github.com/camim-apps/egide-firebird.git .
 $ cd egide-firebird
 $ npm install
 
@@ -24,6 +18,8 @@ $ npm install
 
 > Replicar o arquivo .env.example para .env que está dentro da pasta egide-firebird e atualizar
 
-# Testar
+# Criar o banco local
+
+$ npm run db:migrate
 
 # Rodar o app
