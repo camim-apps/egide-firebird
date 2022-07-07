@@ -8,6 +8,7 @@
     "cron": "node ./src/cron.js",
     "start": "pm2 start --name egide_integration ./src/cron.js",
     "test": "node",
+    "test:extract": "node ./src/__tests__/extract.test.js",
     "destroy": "node ./src/destroyAll.js",
     "db:migrate": "sequelize db:migrate",
     "startover": "rm ./db/db.sqlite && sequelize db:migrate",
