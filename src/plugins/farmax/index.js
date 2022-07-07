@@ -1,15 +1,18 @@
-const { query } = require('./connection')
+const { query, env } = require('./connection')
 const BasePlugin = require('../../bases/BasePlugin')
-const { mapKeys } = require('lodash')
+
+const { FILIAL_ID = 1 } = env
 
 class FarmaxPlugin extends BasePlugin {
+
+    isDebugMode = false
 
     sql = `
         SELECT
               p.ID_PRODUTO AS ID
             , p.CODIGO_BARRAS_1 AS BARCODE
             , p.DESCRICAO AS NAME
-            , cast(p.PRECO_VENDA_1 * 100 as int) AS PRICE
+            , cast(iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID}) * 100 as int) AS PRICE
             , p.ESTOQUE_1 AS INVENTORY
             , l.NOME AS SUPPLIER
         FROM PRODUTOS p
@@ -22,6 +25,9 @@ class FarmaxPlugin extends BasePlugin {
     `
 
     getRecords() {
+        if (this.isDebugMode) {
+            console.log('>>> sql', this.sql)
+        }
         return query(this.sql)
     }
 }

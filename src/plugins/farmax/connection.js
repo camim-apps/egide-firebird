@@ -53,4 +53,5 @@ const query = (sql) =>
 
 module.exports = {
     query,
+    env,
 }
