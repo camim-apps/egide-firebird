@@ -13,7 +13,7 @@ class FarmaxPlugin extends BasePlugin {
             , p.CODIGO_BARRAS_1 AS BARCODE
             , p.DESCRICAO AS NAME
             , cast(iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID}) * 100 as int) AS PRICE
-            , p.ESTOQUE_1 AS INVENTORY
+            , p.ESTOQUE_${FILIAL_ID} AS INVENTORY
             , l.NOME AS SUPPLIER
         FROM PRODUTOS p
         JOIN CLASSES c ON c.CD_CLASSE = p.CD_CLASSE
