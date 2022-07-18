@@ -1,9 +1,10 @@
 require('dotenv').config()
-const extract = require('../modules/extract')
+const { Destroyproduct } = require('../models')
 
 const test = async () => {
     try {
-        await extract()
+        const result = await Destroyproduct.destroy({ truncate: true })
+        console.log(result)
     } catch (error) {
         console.log(error)
     } finally {

@@ -1,26 +1,36 @@
 const formatProduct = ({ status, updateTime, pairs, item }) => {
     const fields = Object.keys(pairs)
-    return fields.reduce((acc, field) => {
-        let value = item[pairs[field]]
+    return fields.reduce(
+        (acc, field) => {
+            let value = item[pairs[field]]
 
-        if (typeof value === 'string') {
-            value = value.trim()
-        }
+            if (typeof value === 'string') {
+                value = value.trim()
+            }
 
-        return {
-            ...acc,
-            [field]: value,
+            return {
+                ...acc,
+                [field]: value,
+            }
+        },
+        {
+            status,
+            updateTime,
         }
-    }, {
-        status,
-        updateTime
-    })
+    )
 }
 
-const formatProducts = ({ pairs, items, status, updateTime }) => items.map(item => formatProduct({ item, status, pairs, item, updateTime }))
+const formatProducts = ({ pairs, items, status, updateTime }) =>
+    items.map((item) =>
+        formatProduct({ item, status, pairs, item, updateTime })
+    )
 
 const isSameProduct = ({ product, item }) => {
-    return item.price === product.price && item.inventory === product.inventory
+    return (
+        item.price === product.price &&
+        item.inventory === product.inventory &&
+        item.barcode === product.barcode
+    )
 }
 
 module.exports = {

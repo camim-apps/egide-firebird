@@ -25,5 +25,15 @@
                 "${file}"
             ]
         },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Run Yarn Test Extract",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "yarn",
+            "runtimeArgs": [
+                "test:extract",
+            ]
+        }
     ]
 }

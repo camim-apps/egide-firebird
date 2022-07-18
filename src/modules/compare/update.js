@@ -1,13 +1,10 @@
 const { Op } = require('sequelize')
 const { chunk } = require('lodash')
-const { Product } = require('../../models')
+const { Product, Destroyproduct } = require('../../models')
 const { isSameProduct } = require('../../shared/formatProducts')
 
 const update = async ({ products, mustStopOnUpdate = false }) => {
-    const elements = products
-        .filter(
-            element => !isSameProduct(element)
-        )
+    const elements = products.filter((element) => !isSameProduct(element))
 
     if (!elements.length) {
         return 0
@@ -18,11 +15,25 @@ const update = async ({ products, mustStopOnUpdate = false }) => {
         process.exit(0)
     }
 
+    // To destroy remotely
+    const toDeleteProducts = elements.filter(
+        (element) => element.item.barcode !== element.product.barcode
+    )
+
+    for (const parts of chunk(toDeleteProducts, 200)) {
+        const values = parts.map((part) => ({
+            id: part.product.id,
+            barcode: part.product.barcode,
+        }))
+
+        await Destroyproduct.bulkCreate(values)
+    }
+
     const values = elements.map((element) => element.item)
 
-    const items = values.map(element => ({
+    const items = values.map((element) => ({
         ...element,
-        status: 'updated'
+        status: 'updated',
     }))
 
     for (const block of chunk(items, 500)) {
@@ -37,6 +48,7 @@ const update = async ({ products, mustStopOnUpdate = false }) => {
     }
 
     console.log('>>> Produtos atualizados', items.length)
+    console.log('>>> Produtos para exclusão', toDeleteProducts.length)
 
     return items.length
 }

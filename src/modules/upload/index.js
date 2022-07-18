@@ -3,7 +3,7 @@ const { resolve } = require('path')
 const fs = require('fs')
 const FormData = require('form-data')
 const Axios = require('axios')
-const { Product } = require('../../models')
+const { Product, Destroyproduct } = require('../../models')
 const RemoteDatabase = require('../../models/remote')
 
 const { INTEGRATION_URL, INTEGRATION_USERNAME, INTEGRATION_PASSWORD } =
@@ -75,6 +75,9 @@ const upload = async () => {
             },
         }
     )
+
+    // Destroy all products to delete remotely
+    await Destroyproduct.destroy({ truncate: true })
 
     fs.unlinkSync(fileRemote)
 
