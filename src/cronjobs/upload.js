@@ -9,6 +9,6 @@ const handle = async () => {
 }
 
 module.exports = {
-    schedule: '*/5 * * * *',
+    schedule: '*/10 * * * *',
     handle
 }
