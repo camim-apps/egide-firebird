@@ -26,4 +26,7 @@ $ npm run db:migrate
 
 # Others
 - Windows 10: shell:common startup - Criar um link para o start.bat e mover o link pra dentro da pasta
-- Windows 7: Instalar o node 12
+- Windows 7: Instalar o node 13
+
+- https://www.centennialsoftwaresolutions.com/post/install-node-js-on-windows-7
+- https://git-scm.com/download/win
