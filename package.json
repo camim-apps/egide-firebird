@@ -10,6 +10,7 @@
     "test": "node",
     "extract": "node ./src/__tests__/extract.test.js",
     "upload": "node ./src/__tests__/upload.test.js",
+    "sql": "node ./src/__tests__/sql.test.js",
     "destroy": "node ./src/destroyAll.js",
     "db:migrate": "sequelize db:migrate",
     "startover": "rm ./db/db.sqlite && sequelize db:migrate",
