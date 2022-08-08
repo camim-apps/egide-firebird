@@ -22,7 +22,7 @@ class FarmaxPlugin extends BasePlugin {
                 p.ID_PRODUTO AS ID
                 , ${barcodeField} AS BARCODE
                 , p.DESCRICAO AS NAME
-                , cast(iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID}) * 100 as int) AS PRICE
+                , cast(iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID}) * 100 as bigint) AS PRICE
                 , p.ESTOQUE_${FILIAL_ID} AS INVENTORY
                 , l.NOME AS SUPPLIER
             FROM PRODUTOS p
