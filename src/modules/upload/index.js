@@ -49,6 +49,8 @@ const upload = async () => {
     // Post to server
     const axios = Axios.create({
         baseURL: INTEGRATION_URL,
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
