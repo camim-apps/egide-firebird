@@ -11,22 +11,47 @@ $ npm i -g pm2
 # Instalar o app de transferência
 
 $ git clone https://github.com/camim-apps/egide-firebird.git .
-$ cd egide-firebird
 $ npm install
 
 # Criar o arquivo de configuração
 
-> Replicar o arquivo .env.example para .env que está dentro da pasta egide-firebird e atualizar
+> Replicar o arquivo .env.example para .env que está dentro da pasta atual e atualizar
+> Replicar o arquivo .env.example para .env que está dentro da src/plugins/farmax e atualizar
 
 # Criar o banco local
 
 $ npm run db:migrate
 
+# Extrair os dados
+
+$ npm run extract
+
+# Upload da primeira carga para o Égide
+
+$ npm run upload
+
 # Rodar o app
 
-# Others
-- Windows 10: shell:common startup - Criar um link para o start.bat e mover o link pra dentro da pasta
-- Windows 7: Instalar o node 13
+$ npm start
 
-- https://www.centennialsoftwaresolutions.com/post/install-node-js-on-windows-7
-- https://git-scm.com/download/win
+# Others
+- Windows 7 e 10: 
+
+> Criar um link para o start.bat e renomear para egide
+> Ir no executar e digitar: shell:common startup
+> Arrastar o arquivo egide para a pasta de inicialização
+
+- Windows 7: 
+
+> Verificar se o windows é 64 bits ou 32 bits 
+> Abrir o browser do cliente, baixar e instalar os seguintes aplicativos:
+
+>> 64 Bits
+- Baixar os seguintes arquivos nos links:
+>>>> https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x64.msi
+>>>> https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-64-bit.exe
+
+>> 32 Bits
+- Baixar os seguintes arquivos nos links:
+>>>> https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x86.msi
+>>>> https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-32-bit.exe
