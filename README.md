@@ -61,7 +61,7 @@ $ nano .env
 	* Para salvar pressionar CRLT X, depois Y para confirmar  e por fim ENTER para sobreescrever o arquivo
 * Copiar e editaro arquivo .env.example para .env que está dentro da src/plugins/farmax
 ~~~
-$ cp src/plugins/farmax/.env.exemple src/plugins/farmax/.env
+$ cp src/plugins/farmax/.env.example src/plugins/farmax/.env
 $ nano src/plugins/farmax/.env
 ~~~
 * No Editor que se abre altere as informações conforme abaixo
