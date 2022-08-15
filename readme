@@ -10,24 +10,27 @@ O símbolo $ indica que o texto deve ser digitado no prompt em aberto.
 O Símbolo # indica que se trata de um comentário explicativo e não deve ser digitado no prompt.
 
  
-# Install Chocolatey 
- **Digitar o comando abaixo no Windows Power Shell como administrador**
+### Install Chocolatey 
+ * Abrir o Windows Power Shell como administrador
 
->$ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-
+~~~
+$ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+~~~
 - Caso  seja executado com sucesso, execute a instalação do Node.JS e do Git pelo mesmo prompt do Power Shell através dos comandos abaixo. 
-> $ choco install -y nodejs --version=16.4.0
-> $ choco install -y git.install
+~~~
+$ choco install -y nodejs --version=16.4.0
+$ choco install -y git.install
+~~~
 - Caso a instalação do Chocolatey falhe, é preciso realizar a instalação manual dos pacotes Node.JS e Git, baixando e instalando os pacotes através dos links abaixo
 	- Windows 64 Bits
-		- https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x64.msi
-		- https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-64-bit.exe
+		- <https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x64.msi>
+		- <https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-64-bit.exe>
 	- Windows 32 Bits
-		- https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x86.msi
-		- https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-32-bit.exe
+		- <https://nodejs.org/download/release/v13.14.0/node-v13.14.0-x86.msi>
+		- <https://github.com/git-for-windows/git/releases/download/v2.37.2.windows.2/Git-2.37.2.2-32-bit.exe>
 * Ao final das instalações o Power Shell pode ser fechado. 
 
-# Local e ambiente de instalação
+### Local e ambiente de instalação
 * Abrir o Windows Explorer e criar a pasta **c:\Egide**. Sem acentos
 * Localize a pasta de instalação do sistema. Geralmente **c:\farmaxWIN** 
 	* Se não encontrar, verifique no atalho do programa no desktop. 
@@ -36,54 +39,69 @@ O Símbolo # indica que se trata de um comentário explicativo e não deve ser d
 *  Clicar com o botão direito, escolher a opção  **Database registration info**
 	* Anotar as informações dos campos *Server*, *Server name* e *Database File*
 * Clicar no botão **Query Editor (F12)**, Apagar qualquer comando existente que esteja no histórico do Query Editor, digitar a consulta abaixo e executar pelo botão de play **Execute (F9)**
-	> select * from parametros
+~~~
+select * from parametros
+~~~
 * Anotar o Código da Filial, na primeira coluna do resultado exibido.
 	
-# Instalar app de integração e configurar arquivos de parametrização
+### Instalar app de integração e configurar arquivos de parametrização
 * Abrir o Windows Explorer e localizar a pasta **c:\Egide**
 * Clicar com o botão direito na pasta, escolher a opção **Git Bash Here**
 * No prompt que se abre digite os 2 comandos abaixo
-> $ git clone https://github.com/camim-apps/egide-firebird.git .
-> $ npm install
+~~~
+$ git clone https://github.com/camim-apps/egide-firebird.git .
+$ npm install
+~~~
 * Copiar e editar o arquivo .env.example para .env na pasta **c:\Egide**
->$ cp .env.example .env
->$ nano .env
-
+~~~
+$ cp .env.example .env
+$ nano .env
+~~~
 * No Editor que se abre insira as informações de USERNAME e PASSWORD recebidas anteriormente. 
 	* Para salvar pressionar CRLT X, depois Y para confirmar  e por fim ENTER para sobreescrever o arquivo
 * Copiar e editaro arquivo .env.example para .env que está dentro da src/plugins/farmax
-> $ cp src/plugins/farmax/.env.exemple src/plugins/farmax/.env
-> $ nano src/plugins/farmax/.env
+~~~
+$ cp src/plugins/farmax/.env.exemple src/plugins/farmax/.env
+$ nano src/plugins/farmax/.env
+~~~
 * No Editor que se abre altere as informações conforme abaixo
 	* DB_HOST -> Usar informação anotada do campo SERVER NAME
 	* DB_USER -> SYSDBA (manter o maiúsculo)
 	* DB_PASSWORD -> masterkey
 	* DB_DATABASE -> Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"**
 
-# Instalar o PM2
+### Instalar o PM2
 
->$ npm i -g pm2
+~~~
+$ npm i -g pm2
+~~~
 
-# Criar o banco local
+### Criar o banco local
 
->$ npm run db:migrate
+~~~
+$ npm run db:migrate
+~~~
 
-# Extrair os dados
+### Extrair os dados
 
->$ npm run extract
+~~~
+$ npm run extract
+~~~
 
-# Upload da primeira carga para o Égide
+### Upload da primeira carga para o Égide
 
->$ npm run upload
+~~~
+$ npm run upload
+~~~
 
-# Rodar o app
+### Rodar o app
 
->$ npm start
+~~~
+$ npm start
+~~~
 
-# Adicionar ao Iniciar
+### Adicionar ao Iniciar
 
 * Criar um link para o start.bat e renomear para Egide
 * Ir no executar e digitar: shell:common startup
 * Arrastar o arquivo egide para a pasta de inicialização
-
-
