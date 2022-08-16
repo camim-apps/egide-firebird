@@ -36,8 +36,8 @@ $ choco install -y git.install
 	* Se não encontrar, verifique o local correto no atalho do programa no desktop. 
 * Abrir o Programa **IBExpert.exe**
 	* Se o programa **IBExpert.exe** não estiver instalado, usar o programa alternativo **Flame Robin**
-		* Versão 64Bits -> [https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup-x64.exe]
-		* Versão 32Bits -> [https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup.exe]
+		* Versão 64Bits -> <https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup-x64.exe>
+		* Versão 32Bits -> <https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup.exe>
 * Acesso as informações usando o **IBExpert.exe**
 	* Localizar a base de dados do programa, identificada pelo nome  **LOJA**
 	*  Clicar com o botão direito, escolher a opção  **Database registration info**
@@ -63,12 +63,12 @@ $ cp .env.example .env
 $ nano .env
 ~~~
 * No Editor que se abre insira as informações de USERNAME e PASSWORD recebidas anteriormente. 
-~~~
-	* INTEGRATION_URL -> https://integration.egidesaude.com.br
-	* INTEGRATION_USERNAME -> Usuário recebido do gestor do Égide
-	* INTEGRATION_PASSWORD -> Senha recebida do gestor do Égide
-	* PLUGIN -> Nome do Sistema local. Padrão **farmax**
-~~~
+| Parâmetro | Valor esperado |
+| :--------- | :------------- |
+| INTEGRATION_URL | https://integration.egidesaude.com.br |
+| INTEGRATION_USERNAME | Usuário recebido do gestor do Égide |
+| INTEGRATION_PASSWORD | Senha recebida do gestor do Égide |
+| PLUGIN | Nome do Sistema local. Padrão **farmax** |
 * Para salvar pressionar CRLT X, depois Y para confirmar  e por fim ENTER para sobreescrever o arquivo
 
 * Copiar e editaro arquivo .env.example para .env que está dentro da src/plugins/farmax
@@ -77,12 +77,13 @@ $ cp src/plugins/farmax/.env.example src/plugins/farmax/.env
 $ nano src/plugins/farmax/.env
 ~~~
 * No Editor que se abre altere as informações conforme abaixo
-~~~
-	* DB_HOST -> Usar informação anotada do campo SERVER NAME
-	* DB_USER -> SYSDBA (manter o maiúsculo)
-	* DB_PASSWORD -> masterkey
-	* DB_DATABASE -> Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"**
-~~~
+| Parâmetro | Valor esperado |
+| :--------- | :------------- |
+| DB_HOST | Usar informação anotada do campo SERVER NAME |
+| DB_USER | SYSDBA (manter o maiúsculo) |
+| DB_PASSWORD | masterkey |
+| DB_DATABASE | Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"** |
+
 
 ### Instalar o PM2
 
