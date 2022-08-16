@@ -33,17 +33,22 @@ $ choco install -y git.install
 ### Local e ambiente de instalação
 * Abrir o Windows Explorer e criar a pasta **c:\Egide**. Sem acentos
 * Localize a pasta de instalação do sistema. Geralmente **c:\farmaxWIN** 
-	* Se não encontrar, verifique no atalho do programa no desktop. 
+	* Se não encontrar, verifique o local correto no atalho do programa no desktop. 
 * Abrir o Programa **IBExpert.exe**
-* Localizar a base de dados do programa, identificada pelo nome  **LOJA**
-*  Clicar com o botão direito, escolher a opção  **Database registration info**
-	* Anotar as informações dos campos *Server*, *Server name* e *Database File*
-* Clicar no botão **Query Editor (F12)**, Apagar qualquer comando existente que esteja no histórico do Query Editor, digitar a consulta abaixo e executar pelo botão de play **Execute (F9)**
+	* Se o programa **IBExpert.exe** não estiver instalado, usar o programa alternativo **Flame Robin**
+		* Versão 64Bits -> [https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup-x64.exe]
+		* Versão 32Bits -> [https://github.com/mariuz/flamerobin/releases/download/0.9.3.12/flamerobin-0.9.3.1bd8c1ac-setup.exe]
+* Acesso as informações usando o **IBExpert.exe**
+	* Localizar a base de dados do programa, identificada pelo nome  **LOJA**
+	*  Clicar com o botão direito, escolher a opção  **Database registration info**
+		* Anotar as informações dos campos *Server*, *Server name* e *Database File*
+	* Clicar no botão **Query Editor (F12)**, Apagar qualquer comando existente que esteja no histórico do Query Editor, digitar a consulta abaixo e executar pelo botão de play **Execute (F9)**
 ~~~
 select * from parametros
 ~~~
-* Anotar o Código da Filial, na primeira coluna do resultado exibido.
-	
+	* Anotar o *Código da Filial*, na primeira coluna do resultado exibido.
+
+
 ### Instalar app de integração e configurar arquivos de parametrização
 * Abrir o Windows Explorer e localizar a pasta **c:\Egide**
 * Clicar com o botão direito na pasta, escolher a opção **Git Bash Here**
