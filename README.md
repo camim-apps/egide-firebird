@@ -63,12 +63,14 @@ $ cp .env.example .env
 $ nano .env
 ~~~
 * No Editor que se abre insira as informações de USERNAME e PASSWORD recebidas anteriormente. 
+
 | Parâmetro | Valor esperado |
-| :--------- | :------------- |
+| :-------- | :------------- |
 | INTEGRATION_URL | https://integration.egidesaude.com.br |
 | INTEGRATION_USERNAME | Usuário recebido do gestor do Égide |
 | INTEGRATION_PASSWORD | Senha recebida do gestor do Égide |
 | PLUGIN | Nome do Sistema local. Padrão **farmax** |
+
 * Para salvar pressionar CRLT X, depois Y para confirmar  e por fim ENTER para sobreescrever o arquivo
 
 * Copiar e editaro arquivo .env.example para .env que está dentro da src/plugins/farmax
@@ -77,13 +79,13 @@ $ cp src/plugins/farmax/.env.example src/plugins/farmax/.env
 $ nano src/plugins/farmax/.env
 ~~~
 * No Editor que se abre altere as informações conforme abaixo
+
 | Parâmetro | Valor esperado |
-| :--------- | :------------- |
+| :-------- | :------------ |
 | DB_HOST | Usar informação anotada do campo SERVER NAME |
 | DB_USER | SYSDBA (manter o maiúsculo) |
 | DB_PASSWORD | masterkey |
 | DB_DATABASE | Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"** |
-
 
 ### Instalar o PM2
 
