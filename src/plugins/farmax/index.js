@@ -30,7 +30,7 @@ class FarmaxPlugin extends BasePlugin {
             JOIN GRUPOS g ON g.CD_GRUPO = p.CD_GRUPO
             JOIN LABORATORIOS l ON l.CD_LABORATORIO = p.CD_LABORATORIO
             where
-            char_length(${barcodeConditionField}) > 10
+            char_length(${barcodeConditionField}) > 7
             order by p.ID_PRODUTO
         `
     }
