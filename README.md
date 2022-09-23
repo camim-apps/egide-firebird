@@ -4,6 +4,7 @@
 	* Ativar a loja no painel administrativo 
 	* Login da loja
 	* Senha da API
+	* Se a integração é **normal** ou **preço promocional**
 > Lembrando que o acesso ao equipamento do cliente é supervisionado e agendado com o cliente. Uma vez recebido o aval do Gestor do Égide para iniciar o processo, o mesmo deve ser tratado como prioridade, evitando deixar o cliente aguardando ou interrupções durante a implantação.
 > Também é importante ao iniciar o acesso remoto enviar via chat do AnyDesk uma mensagem de saudação ao cliente, informando que você um analista de suporte do Égide, que acessou o equipamento para instalar a integração, com prazo para conclusão de 20 a 30 minutos. 
 O símbolo $ indica que o texto deve ser digitado no prompt em aberto.
@@ -71,6 +72,7 @@ $ nano .env
 | INTEGRATION_PASSWORD | Senha recebida do gestor do Égide |
 | PLUGIN | Nome do Sistema local. Padrão **farmax** |
 
+
 * Para salvar pressionar CRLT X, depois Y para confirmar  e por fim ENTER para sobreescrever o arquivo
 
 * Copiar e editaro arquivo .env.example para .env que está dentro da src/plugins/farmax
@@ -86,6 +88,9 @@ $ nano src/plugins/farmax/.env
 | DB_USER | SYSDBA (manter o maiúsculo) |
 | DB_PASSWORD | masterkey |
 | DB_DATABASE | Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"** |
+| ONLY_PROMOTIONS | Para integração somente de **Preço Promocional** setar variável para **true**. Padrão é **false**|
+
+> Sempre que a integração for do tipo ** Preço Promocional** o banco padrão é **matriz.FDB**. O id loja é verificado no banco local, mas os dados do banco apontam para o banco matriz.
 
 ### Instalar o PM2
 
@@ -103,6 +108,7 @@ $ npm run db:migrate
 
 ~~~
 $ npm run extract
+> O log ao final do processo agora exibe além do total de produtos a quantidade de produtos com valor maior que R$ 0,00. Essa informação é importante para os clientes de **Preço Promocional**. Se o total for igual ou próximo a zero é possível que tenha ocorrido um erro na configuração do banco. 
 ~~~
 
 ### Upload da primeira carga para o Égide
