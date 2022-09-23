@@ -47,7 +47,7 @@ $ choco install -y git.install
 ~~~
 select * from parametros
 ~~~
-	* Anotar o *Código da Filial*, na primeira coluna do resultado exibido.
+> Anotar o **Código da Filial**, na primeira coluna do resultado exibido.
 
 
 ### Instalar app de integração e configurar arquivos de parametrização
