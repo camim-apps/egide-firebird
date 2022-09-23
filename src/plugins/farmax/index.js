@@ -1,7 +1,11 @@
 const { query, env } = require('./connection')
 const BasePlugin = require('../../bases/BasePlugin')
 
-const { FILIAL_ID = 1, CAN_USE_BARCODE_2 = 'false' } = env
+const {
+    FILIAL_ID = 1,
+    CAN_USE_BARCODE_2 = 'false',
+    ONLY_PROMOTIONS = 'false',
+} = env
 
 class FarmaxPlugin extends BasePlugin {
     isDebugMode = false
@@ -17,15 +21,28 @@ class FarmaxPlugin extends BasePlugin {
                 ? 'p.CODIGO_BARRAS_1'
                 : 'iif(p.CODIGO_BARRAS_2 is not null, p.CODIGO_BARRAS_2, p.CODIGO_BARRAS_1)'
 
+        const originalPrice = `iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID})`
+
+        const priceField =
+            ONLY_PROMOTIONS === 'true'
+                ? `iif(pr.POR is not null, pr.POR, ${originalPrice})`
+                : originalPrice
+
+        const joinPromotion =
+            ONLY_PROMOTIONS === 'false'
+                ? ''
+                : 'JOIN FARMACIASAPP_OFERTAS pr on pr.ID_PRODUTO = p.ID_PRODUTO'
+
         return `
             SELECT
                 p.ID_PRODUTO AS ID
                 , ${barcodeField} AS BARCODE
                 , p.DESCRICAO AS NAME
-                , cast(iif(p.PRECO_PROMOCAO_${FILIAL_ID} > 0, p.PRECO_PROMOCAO_${FILIAL_ID}, p.PRECO_VENDA_${FILIAL_ID}) * 100 as bigint) AS PRICE
+                , cast(${priceField} * 100 as bigint) AS PRICE
                 , p.ESTOQUE_${FILIAL_ID} AS INVENTORY
                 , l.NOME AS SUPPLIER
             FROM PRODUTOS p
+            ${joinPromotion}
             JOIN CLASSES c ON c.CD_CLASSE = p.CD_CLASSE
             JOIN GRUPOS g ON g.CD_GRUPO = p.CD_GRUPO
             JOIN LABORATORIOS l ON l.CD_LABORATORIO = p.CD_LABORATORIO
