@@ -88,9 +88,9 @@ $ nano src/plugins/farmax/.env
 | DB_USER | SYSDBA (manter o maiúsculo) |
 | DB_PASSWORD | masterkey |
 | DB_DATABASE | Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"** |
-| ONLY_PROMOTIONS | Para integração somente de **Preço Promocional** setar variável para **true**. Padrão é **false**|
+| ONLY_PROMOTIONS | Para integração somente de **Preço Promocional** setar variável para **true**. Padrão é **false** |
 
-> Sempre que a integração for do tipo ** Preço Promocional** o banco padrão é **matriz.FDB**. O id loja é verificado no banco local, mas os dados do banco apontam para o banco matriz.
+> Sempre que a integração for do tipo **Preço Promocional** o banco padrão é **matriz.FDB**. O id loja é verificado no banco local, mas os dados do banco apontam para o banco matriz.
 
 ### Instalar o PM2
 
@@ -108,8 +108,8 @@ $ npm run db:migrate
 
 ~~~
 $ npm run extract
-> O log ao final do processo agora exibe além do total de produtos a quantidade de produtos com valor maior que R$ 0,00. Essa informação é importante para os clientes de **Preço Promocional**. Se o total for igual ou próximo a zero é possível que tenha ocorrido um erro na configuração do banco. 
 ~~~
+> O log ao final do processo agora exibe além do total de produtos a quantidade de produtos com valor maior que R$ 0,00. Essa informação é importante para os clientes de **Preço Promocional**. Se o total for igual ou próximo a zero é possível que tenha ocorrido um erro na configuração do banco. 
 
 ### Upload da primeira carga para o Égide
 
