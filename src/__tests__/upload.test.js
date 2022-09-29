@@ -3,7 +3,7 @@ const upload = require('../modules/upload')
 
 const test = async () => {
     try {
-        console.log(await upload())
+        console.log(await upload('upload-large'))
     } catch (error) {
         console.log(error)
     } finally {

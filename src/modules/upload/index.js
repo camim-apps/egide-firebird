@@ -9,7 +9,7 @@ const RemoteDatabase = require('../../models/remote')
 const { INTEGRATION_URL, INTEGRATION_USERNAME, INTEGRATION_PASSWORD } =
     process.env
 
-const upload = async () => {
+const upload = async (endpoint = 'upload') => {
     if (!INTEGRATION_URL) {
         return
     }
@@ -64,7 +64,7 @@ const upload = async () => {
     const form = new FormData()
     form.append('file', fs.createReadStream(fileRemote))
 
-    const response = await axios.post('robot/upload', form)
+    const response = await axios.post(`robot/${endpoint}`, form)
 
     // Update all products
     await Product.update(
