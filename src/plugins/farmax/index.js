@@ -4,6 +4,7 @@ const BasePlugin = require('../../bases/BasePlugin')
 const {
     FILIAL_ID = 1,
     CAN_USE_BARCODE_2 = 'false',
+    ONLY_FULL_PRICE = 'false',
     ONLY_PROMOTIONS = 'false',
 } = env
 
@@ -26,6 +27,8 @@ class FarmaxPlugin extends BasePlugin {
         const priceField =
             ONLY_PROMOTIONS === 'true'
                 ? `iif(pr.POR is not null, pr.POR, ${originalPrice})`
+                : ONLY_FULL_PRICE === 'true'
+                ? `p.PRECO_VENDA_${FILIAL_ID}`
                 : originalPrice
 
         const joinPromotion =

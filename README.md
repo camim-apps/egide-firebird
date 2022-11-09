@@ -89,6 +89,7 @@ $ nano src/plugins/farmax/.env
 | DB_PASSWORD | masterkey |
 | DB_DATABASE | Informação anota do campo DATABASE FILE entre aspas duplas. Padrão **"C:\FarmaxWIN\Farmax.FDB"** |
 | ONLY_PROMOTIONS | Para integração somente de **Preço Promocional** setar variável para **true**. Padrão é **false** |
+| ONLY_FULL_PRICE | Para integração somente com o **Preço Cheio** (sem promoção), setar variável para **true**. Padrão é **false** |
 
 > Sempre que a integração for do tipo **Preço Promocional** o banco padrão é **matriz.FDB**. O id loja é verificado no banco local, mas os dados do banco apontam para o banco matriz.
 
